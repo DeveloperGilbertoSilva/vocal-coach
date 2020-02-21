@@ -9,7 +9,7 @@
 
     <script src="https://kit.fontawesome.com/0136275564.js" crossorigin="anonymous"></script>
 
-    <title>Vocal Coach Dashboard</title>
+    <title>Vocal Coach - Grupo de formação ICM</title>
 </head>
 
 <body>

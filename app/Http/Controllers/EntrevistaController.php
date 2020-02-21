@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class EntrevistaController extends Controller
 {
+    // Armazenamento de registros de entrevistas
     public function armazenar(Request $request)
     {
         DB::beginTransaction();
@@ -19,8 +20,14 @@ class EntrevistaController extends Controller
         return redirect()->route('entrevista');
     }
 
+    // Listagem de todos os registros existentes
     public function listar(){
         $entrevistas = Entrevista::query()->get();
-        return view('index', ['entrevistas'=>$entrevistas]);
+        return view('aluno.armazenar', ['entrevistas'=>$entrevistas]);
+    }
+
+    // Redirecionamento para a página de resposta da entrevista
+    public function answerSurvey(){
+        return view('entrevista.armazenar');
     }
 }
