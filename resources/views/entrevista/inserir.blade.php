@@ -14,7 +14,7 @@
         @csrf
         <div class="form-group">
             <label for="titulo">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Insira o Título">
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Insira o Título" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Registrar</button>

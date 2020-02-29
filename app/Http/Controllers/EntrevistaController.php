@@ -18,7 +18,7 @@ class EntrevistaController extends Controller
     {
         DB::beginTransaction();
             Entrevista::create([
-                'titulo'
+                'titulo' => $request->titulo
             ]);
         DB::commit();
 
@@ -26,11 +26,20 @@ class EntrevistaController extends Controller
     }
 
     // LISTAR TODOS OS REGISTROS
-    public function listar(){
+    public function listarEntrevistas()
+    {
         $entrevistas = Entrevista::query()->get();
-        return view('aluno.armazenar', ['entrevistas'=>$entrevistas]);
+        return view('entrevista.listar', ['entrevistas'=>$entrevistas]);
     }
 
+    // LISTAR SOMENTE 1 REGISTRO
+    public function listarEntrevista(Request $request)
+    {
+        $entrevista = Entrevista::findOrFail($request->id);
+        return view('entrevista.alterar', ['entrevista'=>$entrevista]);
+    }
+
+    // ALTERAR REGISTRO
     public function alterar(Request $request)
     {
         $entrevista = Entrevista::findOrFail($request->id);
@@ -39,17 +48,18 @@ class EntrevistaController extends Controller
             $entrevista -> titulo = $request->titulo;
             $entrevista->save();
         DB::commit();
+
+        return redirect()->route('listar-entrevistas');
     }
 
+    // EXCLUIR REGISTRO
     public function excluir(Request $request)
     {
         DB::beginTransaction();
             Entrevista::destroy($request->id);
         DB::commit();
+
+        return redirect()->route('listar-entrevistas');
     }
 
-    // // Redirecionamento para a página de resposta da entrevista
-    // public function answerSurvey(){
-    //     return view('entrevista.armazenar');
-    // }
 }

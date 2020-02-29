@@ -97,8 +97,15 @@ Route::get('/disciplina/excluir/{id}', 'DisciplinaController@excluir');
 
 //======================================================QUESTIONÁRIO======================================================
 // ENTREVISTA
+Route::get('/entrevistas', 'EntrevistaController@listarEntrevistas')->name('listar-entrevistas');
+
 Route::get('/entrevista/inserir', 'EntrevistaController@inserir')->name('entrevista');
 Route::post('/entrevista/inserir', 'EntrevistaController@armazenar');
+
+Route::get('/entrevista/alterar/{id}', 'EntrevistaController@listarEntrevista');
+Route::post('/entrevista/alterar/{id}', 'EntrevistaController@alterar');
+
+Route::get('/entrevista/excluir/{id}', 'EntrevistaController@excluir');
 //====================================================================
 
 // PERGUNTA
