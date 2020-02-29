@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coach extends Model
 {
+    protected $table = 'coachs';
+
     public $fillable = [
         'nome',
         'apelido',

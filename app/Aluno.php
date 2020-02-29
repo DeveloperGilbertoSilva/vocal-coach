@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\OrderByName;
 use Illuminate\Database\Eloquent\Model;
 
 class Aluno extends Model
@@ -29,4 +30,13 @@ class Aluno extends Model
     public function entrevista(){
         return $this->belongsTo(Entrevista::class);
     }
+
+    public function scopeListaOrdenandoNome($query){
+        return $query->orderBy('nome');
+    }
+
+    // protected static function boot(){
+    //     parent::boot();
+    //     static::addGlobalScope(new OrderByName);
+    // }
 }

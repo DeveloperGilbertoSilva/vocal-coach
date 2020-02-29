@@ -10,11 +10,11 @@
 
 
 @section('conteudo')
-    <form method="post" action="/entrevista">
+    <form method="post" action="/entrevista/inserir">
         @csrf
         <div class="form-group">
-            <label for="pergunta">Pergunta</label>
-            <input type="text" class="form-control" id="pergunta" name="pergunta" placeholder="Insira a pergunta">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Insira o Título">
         </div>
 
         <button type="submit" class="btn btn-primary">Registrar</button>

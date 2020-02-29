@@ -6,11 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entrevista extends Model
 {
-    public $fillable = ['pergunta'];
+    protected $table = 'entrevistas';
+
+    public $fillable = ['titulo'];
 
     public $timestamps = false;
 
-    public function alunos(){
+    public function alunos()
+    {
         return $this->hasMany(Aluno::class);
+    }
+
+    public function perguntas()
+    {
+        return $this->hasMany(Pergunta::class);
     }
 }

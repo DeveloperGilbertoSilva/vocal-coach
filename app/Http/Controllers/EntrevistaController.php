@@ -8,26 +8,48 @@ use Illuminate\Support\Facades\DB;
 
 class EntrevistaController extends Controller
 {
-    // Armazenamento de registros de entrevistas
+    // CARREGAR FORMULÁRIO DE INSERÇÃO
+    public function inserir(){
+        return view('entrevista.inserir');
+    }
+
+    // ARMAZENAR OS REGISTRO
     public function armazenar(Request $request)
     {
         DB::beginTransaction();
             Entrevista::create([
-                'pergunta'=>$request->pergunta
+                'titulo'
             ]);
         DB::commit();
 
         return redirect()->route('entrevista');
     }
 
-    // Listagem de todos os registros existentes
+    // LISTAR TODOS OS REGISTROS
     public function listar(){
         $entrevistas = Entrevista::query()->get();
         return view('aluno.armazenar', ['entrevistas'=>$entrevistas]);
     }
 
-    // Redirecionamento para a página de resposta da entrevista
-    public function answerSurvey(){
-        return view('entrevista.armazenar');
+    public function alterar(Request $request)
+    {
+        $entrevista = Entrevista::findOrFail($request->id);
+
+        DB::beginTransaction();
+            $entrevista -> titulo = $request->titulo;
+            $entrevista->save();
+        DB::commit();
     }
+
+    public function excluir(Request $request)
+    {
+        DB::beginTransaction();
+            Entrevista::destroy($request->id);
+        DB::commit();
+    }
+
+    // // Redirecionamento para a página de resposta da entrevista
+    // public function answerSurvey(){
+    //     return view('entrevista.armazenar');
+    // }
 }

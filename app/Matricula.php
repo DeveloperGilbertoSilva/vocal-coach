@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matricula extends Model
 {
+    protected $table = 'matriculas';
+
     public $fillable = [
         'data_inicio',
         'data_fim',

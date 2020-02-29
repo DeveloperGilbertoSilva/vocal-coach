@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fonoaudiologo extends Model
 {
+    protected $table = 'fonoaudiologos';
+
     public $fillable = [
         'data_atendimento',
         'medico',

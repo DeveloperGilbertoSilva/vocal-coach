@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class PerguntaTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('perguntas', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('descricao');
+
+            $table->unsignedBigInteger('entrevista_id');
+            $table->foreign('entrevista_id')->references('id')->on('entrevistas');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
+}

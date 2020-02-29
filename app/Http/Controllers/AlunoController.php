@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Aluno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 
 class AlunoController extends Controller
 {
-    // Armazenarregistros de alunos
+    // CARREGAR FORMULÁRIO DE INSERÇÃO
+    public function inserir(){
+        return view('aluno.inserir');
+    }
+
+    // ARMAZENAR OS REGISTRO
     public function armazenar(Request $request)
     {
         DB::beginTransaction();
-            DB::table('alunos')->insertGetId([
+            Aluno::create([
                 'nome' => $request->nome,
                 'nascimento' => $request->nascimento,
                 'endereco' => $request->endereco,
@@ -26,59 +30,59 @@ class AlunoController extends Controller
                 'email_responsavel' => $request->email_responsavel,
                 'dia_pagamento' => $request->dia_pagamento,
                 'link_material' => $request->link_material,
-                'situacao_cadastro' => $request->situacao_cadastro,
-                'aprovacao_cadastro' => $request->aprovacao_cadastro
+                'situacao_cadastro' => $request->nome,
+                'aprovacao_cadastro' => $request->aprovacao_cadastro,
             ]);
         DB::commit();
 
         return redirect()->route('listar-alunos');
     }
 
-    // Listar todos os registros de alunos
+    // LISTAR TODOS OS REGISTROS
     public function listarAlunos()
     {
-        $alunos = DB::table('alunos')->select('id','nome', 'email')->get();
+        // $alunos = DB::table('alunos')->select('id','nome', 'email')->get();
+        $alunos = Aluno::listaOrdenandoNome()->get();
         return view('aluno.listar', ['alunos'=>$alunos]);
     }
 
-    // Listar somente um registro de aluno
+    // LISTAR SOMENTE 1 REGISTRO
     public function listarAluno(Request $request)
     {
-        $aluno = Aluno::find($request->id);
-        // return view('aluno.alterar', ['aluno'=>$aluno]);
+        $aluno = Aluno::findOrFail($request->id);
         return view('aluno.alterar', ['aluno'=>$aluno]);
     }
 
-    // Alterar registro de aluno
+    // ALTERAR REGISTRO
     public function alterar(Request $request)
     {
+        $aluno = Aluno::findOrFail($request->id);
         DB::beginTransaction();
-            DB::table('alunos')->where('id', $request->id)->update([
-                'nome' => $request->nome,
-                'nascimento' => $request->nascimento,
-                'endereco' => $request->endereco,
-                'cidade' => $request->cidade,
-                'uf' => $request->uf,
-                'estado_civil' => $request->estado_civil,
-                'telefone_1' => $request->telefone_1,
-                'telefone_2' => $request->telefone_2,
-                'email' => $request->email,
-                'email_responsavel' => $request->email_responsavel,
-                'dia_pagamento' => $request->dia_pagamento,
-                'link_material' => $request->link_material,
-                'situacao_cadastro' => $request->situacao_cadastro,
-                'aprovacao_cadastro' => $request->aprovacao_cadastro
-            ]);
+            $aluno -> nome = $request->nome;
+            $aluno -> nascimento = $request->nascimento;
+            $aluno -> endereco = $request->endereco;
+            $aluno -> cidade = $request->cidade;
+            $aluno -> uf = $request->uf;
+            $aluno -> estado_civil = $request->estado_civil;
+            $aluno -> telefone_1 = $request->telefone_1;
+            $aluno -> telefone_2 = $request->telefone_2;
+            $aluno -> email = $request->email;
+            $aluno -> email_responsavel = $request->email_responsavel;
+            $aluno -> dia_pagamento = $request->dia_pagamento;
+            $aluno -> link_material = $request->link_material;
+            $aluno -> situacao_cadastro = $request->situacao_cadastro;
+            $aluno -> aprovacao_cadastro = $request->aprovacao_cadastro;
+            $aluno ->save();
         DB::commit();
 
         return redirect()->route('listar-alunos');
     }
 
-    // Excluir registro de aluno
+    // EXCLUIR REGISTRO
     public function excluir(Request $request)
     {
         DB::beginTransaction();
-            DB::table('alunos')->where('id',$request->id)->delete();
+            Aluno::destroy($request->id);
         DB::commit();
 
         return redirect()->route('listar-alunos');

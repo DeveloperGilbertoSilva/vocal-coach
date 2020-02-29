@@ -6,7 +6,11 @@
 
 @section('descricao')
     Lista de alunos cadastrados
+    <div>
+        <a class="btn btn-primary" href="/aluno/inserir">Registrar aluno</a>
+    </div>
 @endsection
+
 
 
 @section('conteudo')

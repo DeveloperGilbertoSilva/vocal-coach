@@ -8,7 +8,9 @@
     Ficha de cadastro de alunos
 @endsection
 
-
+<?php
+    $id = 7;
+?>
 @section('conteudo')
     <form class="mb-3" method="post" action="/aluno/inserir">
         @csrf
@@ -19,14 +21,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="nascimento">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="nascimento" name="nascimento" placeholder="Insira o nome" required>
+                        <input type="date" class="form-control" id="nascimento" name="nascimento" placeholder="Insira o nome" value="2017-05-12" required>
                     </div>
                 </div>
             </div>
@@ -35,21 +37,21 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="endereco">Endereço</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="cidade">Cidade</label>
-                        <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="uf">UF</label>
-                        <input type="text" class="form-control" id="uf" name="uf" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="uf" name="uf" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
             </div>
@@ -73,14 +75,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="telefone_1">Telefone 1</label>
-                        <input type="text" class="form-control" id="telefone_1" name="telefone_1" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="telefone_1" name="telefone_1" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="telefone_2">Telefone 2</label>
-                        <input type="text" class="form-control" id="telefone_2" name="telefone_2" placeholder="Insira o nome" required>
+                        <input type="text" class="form-control" id="telefone_2" name="telefone_2" placeholder="Insira o nome" value="Teste {{$id}}" required>
                     </div>
                 </div>
             </div>
@@ -89,14 +91,14 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Insira o nome" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Insira o nome" value="teste{{$id}}@gmail.com" required>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
                         <label for="email_responsavel">E-mail do responsável</label>
-                        <input type="email" class="form-control" id="email_responsavel" name="email_responsavel" placeholder="Insira o nome" required>
+                        <input type="email" class="form-control" id="email_responsavel" name="email_responsavel" placeholder="Insira o nome" value="teste{{$id}}@gmail.com" required>
                     </div>
                 </div>
             </div>
@@ -112,7 +114,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="dia_pagamento">Dia do pagamento</label>
-                        <input type="number" class="form-control" id="dia_pagamento" name="dia_pagamento" placeholder="Insira o nome" required>
+                        <input type="number" class="form-control" id="dia_pagamento" name="dia_pagamento" placeholder="Insira o nome" value="21" required>
                     </div>
                 </div>
             </div>
@@ -147,7 +149,7 @@
 
         <div class="form-group">
             <label for="link_material">Link do material</label>
-            <input type="text" class="form-control" id="link_material" name="link_material" placeholder="Insira o nome" required>
+            <input type="text" class="form-control" id="link_material" name="link_material" placeholder="Insira o nome" value="Teste {{$id}}" required>
         </div>
 
         {{-- <div class="form-group">
